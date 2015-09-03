@@ -47,6 +47,7 @@ namespace Stackop
 </body>
 </html>
 
+
 webform1 code( push page code):
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="push.aspx.cs" Inherits="push" %>
 
@@ -72,6 +73,27 @@ webform1 code( push page code):
     </form>
 </body>
 </html>
+protected void Button1_Click(object sender, EventArgs e)
+    {
+
+        operations obj = new operations();
+        if (TextBox1.Text == " ")
+        {
+            Label2.Text = "enter book number";
+        }
+        else
+        {
+            obj.add(Convert.ToInt32(TextBox1.Text));
+            Label2.Text = TextBox1.Text + "added to stack";
+        }
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Server.Transfer("home.aspx");
+    }
+}
+public partial class pop : System.Web.UI.Page
+
 
 
 webform2 code(pop page code):
@@ -98,7 +120,22 @@ webform2 code(pop page code):
     </form>
 </body>
 </html>
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
 
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        operations obj1 = new operations();
+
+        Label1.Text = Convert.ToInt32(obj1.remove()) + "removed from stack";
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Server.Transfer("home.aspx");
+    }
+}
 
  webform3 code(view data page code):
  
@@ -124,5 +161,23 @@ webform2 code(pop page code):
     </form>
 </body>
 </html>
+
+protected void Button1_Click(object sender, EventArgs e)
+    {
+        operations obj3 = new operations();
+        obj3.remove();
+        int l=obj3.getdata();
+    
+        for (int i=0; i<= l;i++ )
+        {
+           ListBox1.Text= obj3.remove().ToString();
+        }
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Server.Transfer("home.aspx");
+    }
+
+
 
     
